@@ -1,11 +1,8 @@
 # Builder image
 FROM oven/bun:latest AS builder
 WORKDIR /tmp
-RUN apt-get update
-RUN apt-get install curl unzip -y
 
-# Fetch bun's lambda runtime
-RUN curl https://raw.githubusercontent.com/oven-sh/bun/main/packages/bun-lambda/runtime.ts --output runtime.ts
+COPY ./runtime.ts ./runtime.ts
 COPY ./index.ts ./index.ts
 RUN bun install aws4fetch
 RUN bun build --compile runtime.ts --outfile bootstrap
