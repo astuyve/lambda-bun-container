@@ -1,0 +1,19 @@
+service: serverless-bun-app
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  architecture: arm64
+    	
+  ecr:
+    images:
+      bun-image:
+        path: ../
+functions:
+  hello:
+    image:
+      name: bun-image
+    events:
+      - httpApi:
+          method: get
+          path: /hello
