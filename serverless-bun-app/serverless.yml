@@ -13,7 +13,4 @@ functions:
   hello:
     image:
       name: bun-image
-    events:
-      - httpApi:
-          method: get
-          path: /hello
+    url: true
